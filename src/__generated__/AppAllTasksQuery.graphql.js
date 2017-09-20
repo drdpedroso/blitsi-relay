@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash eb651cb82774ee6de65301bf9f494a24
+ * @relayHash 9fcb660b250d05179ec2093f41d75b28
  */
 
 /* eslint-disable */
@@ -18,12 +18,12 @@ export type AppAllTasksQueryResponse = {|
 /*
 query AppAllTasksQuery {
   viewer {
-    ...App_viewer
+    ...TasksList_viewer
     id
   }
 }
 
-fragment App_viewer on Viewer {
+fragment TasksList_viewer on Viewer {
   allTasks(first: 10) {
     edges {
       node {
@@ -50,6 +50,7 @@ fragment App_viewer on Viewer {
 fragment Task_task on Task {
   id
   title
+  status
 }
 */
 
@@ -70,7 +71,7 @@ const batch /*: ConcreteBatch*/ = {
         "selections": [
           {
             "kind": "FragmentSpread",
-            "name": "App_viewer",
+            "name": "TasksList_viewer",
             "args": null
           }
         ],
@@ -155,6 +156,13 @@ const batch /*: ConcreteBatch*/ = {
                                 "alias": null,
                                 "args": null,
                                 "name": "title",
+                                "storageKey": null
+                              },
+                              {
+                                "kind": "ScalarField",
+                                "alias": null,
+                                "args": null,
+                                "name": "status",
                                 "storageKey": null
                               }
                             ]
@@ -248,7 +256,7 @@ const batch /*: ConcreteBatch*/ = {
                 ],
                 "handle": "connection",
                 "name": "allTasks",
-                "key": "App_allTasks",
+                "key": "TasksList_allTasks",
                 "filters": []
               }
             ]
@@ -258,7 +266,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "query AppAllTasksQuery {\n  viewer {\n    ...App_viewer\n    id\n  }\n}\n\nfragment App_viewer on Viewer {\n  allTasks(first: 10) {\n    edges {\n      node {\n        ...Task_task\n        id\n      }\n    }\n    ... on TaskConnection {\n      edges {\n        cursor\n        node {\n          __typename\n          id\n        }\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n}\n\nfragment Task_task on Task {\n  id\n  title\n}\n"
+  "text": "query AppAllTasksQuery {\n  viewer {\n    ...TasksList_viewer\n    id\n  }\n}\n\nfragment TasksList_viewer on Viewer {\n  allTasks(first: 10) {\n    edges {\n      node {\n        ...Task_task\n        id\n      }\n    }\n    ... on TaskConnection {\n      edges {\n        cursor\n        node {\n          __typename\n          id\n        }\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n}\n\nfragment Task_task on Task {\n  id\n  title\n  status\n}\n"
 };
 
 module.exports = batch;

@@ -8,7 +8,7 @@
 
 /*::
 import type {ConcreteFragment} from 'relay-runtime';
-export type App_viewer = {|
+export type TasksList_viewer = {|
   +allTasks: {|
     +edges: ?$ReadOnlyArray<?{|
       +node: {| |};
@@ -33,14 +33,14 @@ const fragment /*: ConcreteFragment*/ = {
       }
     ]
   },
-  "name": "App_viewer",
+  "name": "TasksList_viewer",
   "selections": [
     {
       "kind": "LinkedField",
       "alias": "allTasks",
       "args": null,
       "concreteType": "TaskConnection",
-      "name": "__App_allTasks_connection",
+      "name": "__TasksList_allTasks_connection",
       "plural": false,
       "selections": [
         {

@@ -43,13 +43,36 @@
     "whatwg-fetch": "2.0.3"
   },
   "scripts": {
-    "start": "node scripts/start.js",
+    "start": "npm run compile && npm run standard && node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "compile": "relay-compiler --src ./src --schema ./schema.graphql",
+    "standard": "standard"
   },
   "devDependencies": {
     "babel-plugin-relay": "^1.3.0",
-    "relay-compiler": "^1.3.0"
+    "relay-compiler": "^1.3.0",
+    "standard": "^10.0.3"
+  },
+  "standard": {
+    "parser": "babel-eslint",
+    "globals": [
+      "location",
+      "test",
+      "expect",
+      "prompt",
+      "it",
+      "describe",
+      "google",
+      "alert",
+      "URL",
+      "__API_KEY__",
+      "fetch",
+      "Headers"
+    ],
+    "ignore": [
+      "/tools/"
+    ]
   },
   "jest": {
     "collectCoverageFrom": [

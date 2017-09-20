@@ -2,7 +2,7 @@ const {
     Environment,
     Network,
     RecordSource,
-    Store,
+    Store
   } = require('relay-runtime')
 
 const store = new Store(new RecordSource())
@@ -15,14 +15,14 @@ const network = Network.create((operation, variables) => {
     },
     body: JSON.stringify({
       query: operation.text,
-      variables,
-    }),
+      variables
+    })
   }).then(response => {
     return response.json()
   })
 })
 const environment = new Environment({
   network,
-  store,
+  store
 })
 export default environment
